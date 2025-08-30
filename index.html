@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arlo's Gear and Spells</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .table-header th {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .table-body td {
+            padding: 1rem;
+            vertical-align: top;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .icon-lg {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        .icon-md {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        #loading-indicator {
+            display: none;
+        }
+        .input-box-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .input-notes {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 sm:p-8">
+
+    <div class="container mx-auto p-4 sm:p-8 space-y-8">
+        <h1 class="text-4xl sm:text-5xl font-bold text-center text-gray-800 mb-8">Arlo's Gear and Spells</h1>
+
+        <!-- Dungeoneer's Pack and Gear Section -->
+        <div class="card p-6">
+            <h2 class="text-3xl font-semibold text-gray-700 mb-6">Gear & Supplies</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="table-header text-gray-500">
+                            <th><div class="icon-md"></div></th>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <tr>
+                            <td><div class="icon-lg">⚔️</div></td>
+                            <td class="font-medium text-gray-900">Daggers</td>
+                            <td>2</td>
+                            <td>A light, finesse weapon.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🏹</div></td>
+                            <td class="font-medium text-gray-900">Light Crossbow</td>
+                            <td>1</td>
+                            <td>Ranged weapon.</td>
+                        </tr>
+                         <tr>
+                            <td><div class="icon-lg">➡️</div></td>
+                            <td class="font-medium text-gray-900">Bolts</td>
+                            <td>
+                                <input type="number" placeholder="19" class="w-24 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
+                            </td>
+                            <td>Ammunition for light crossbow.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🛡️</div></td>
+                            <td class="font-medium text-gray-900">Chain Shirt</td>
+                            <td>1</td>
+                            <td>Light armor. AC of 13 + Dex modifier (max 2).</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🔓</div></td>
+                            <td class="font-medium text-gray-900">Thieves' Tools</td>
+                            <td>1</td>
+                            <td>Used for picking locks and disarming traps.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">⚙️</div></td>
+                            <td class="font-medium text-gray-900">Tinker's Tools</td>
+                            <td>1</td>
+                            <td>Used for creating and repairing small devices.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">💰</div></td>
+                            <td class="font-medium text-gray-900">Pouches</td>
+                            <td>2</td>
+                            <td>Holds coins or small items.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🧥</div></td>
+                            <td class="font-medium text-gray-900">Traveler's Clothes</td>
+                            <td>1</td>
+                            <td>Standard clothing for a long journey.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🎒</div></td>
+                            <td class="font-medium text-gray-900">Backpack</td>
+                            <td>1</td>
+                            <td>Carrying capacity: 30 lbs.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">♟️</div></td>
+                            <td class="font-medium text-gray-900">Caltrops</td>
+                            <td>
+                                <input type="number" placeholder="20" class="w-24 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
+                            </td>
+                            <td>Covers a 5ft square. Any creature entering the area takes 1 piercing damage and their speed is reduced by 10ft.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🔧</div></td>
+                            <td class="font-medium text-gray-900">Crowbar</td>
+                            <td>1</td>
+                            <td>A crowbar grants advantage to Strength checks where the crowbar's leverage can be applied.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🛢️</div></td>
+                            <td class="font-medium text-gray-900">Flasks of Oil</td>
+                            <td>2</td>
+                            <td>Can be used to fuel a torch or as a weapon. Can cover a 5ft square and be lit with a flame.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🍞</div></td>
+                            <td class="font-medium text-gray-900">Rations</td>
+                            <td>
+                                <div class="input-box-container">
+                                    <input type="number" placeholder="10" class="w-16 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
+                                    <span class="input-notes">days</span>
+                                </div>
+                            </td>
+                            <td>Provides enough food and drink to sustain one person for one day.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🧵</div></td>
+                            <td class="font-medium text-gray-900">Rope</td>
+                            <td>
+                                <div class="input-box-container">
+                                    <input type="number" placeholder="50" class="w-16 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
+                                    <span class="input-notes">ft</span>
+                                </div>
+                            </td>
+                            <td>Provides a secure line for climbing or tying things up.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🔥</div></td>
+                            <td class="font-medium text-gray-900">Tinderbox</td>
+                            <td>1</td>
+                            <td>Contains flint and steel, used to start fires.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🕯️</div></td>
+                            <td class="font-medium text-gray-900">Torches</td>
+                            <td>
+                                <input type="number" placeholder="10" class="w-24 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
+                            </td>
+                            <td>Provides bright light in a 20ft radius and dim light for another 20ft. Lasts for 1 hour.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">💧</div></td>
+                            <td class="font-medium text-gray-900">Waterskin</td>
+                            <td>1</td>
+                            <td>Holds 4 pints of water.</td>
+                        </tr>
+                         <tr>
+                            <td><div class="icon-lg">🪙</div></td>
+                            <td class="font-medium text-gray-900">Silver Goblin Teeth</td>
+                            <td>
+                                <input type="number" placeholder="4" class="w-24 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🪙</div></td>
+                            <td class="font-medium text-gray-900">Gold Pieces (GP)</td>
+                            <td>
+                                <input type="number" placeholder="39" class="w-24 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Spells Section -->
+        <div class="card p-6">
+            <h2 class="text-3xl font-semibold text-gray-700 mb-6">Spells</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="table-header text-gray-500">
+                            <th><div class="icon-md"></div></th>
+                            <th>Spell</th>
+                            <th>Casting Time</th>
+                            <th>Range</th>
+                            <th>Duration</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body" id="spell-table-body">
+                        <tr>
+                            <td><div class="icon-lg">🩹</div></td>
+                            <td class="font-medium text-gray-900">Mending</td>
+                            <td>1 minute</td>
+                            <td>Touch</td>
+                            <td>Instantaneous</td>
+                            <td>This spell repairs a single break or tear in an object you touch, such as a broken chain link, two halves of a key, or a torn cloak. Provided that the break or tear is no larger than 1 foot in any dimension, you mend it, leaving no trace of the former damage. This spell can physically repair a magic item or construct, but cannot restore its magical properties.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🎇</div></td>
+                            <td class="font-medium text-gray-900">Produce Flame</td>
+                            <td>1 action</td>
+                            <td>Self (30 ft)</td>
+                            <td>10 minutes</td>
+                            <td>A flickering flame appears in your hand. The flame remains there for the duration and harms neither you nor your equipment. The flame sheds bright light in a 10-foot radius and dim light for an additional 10 feet. The spell ends if you dismiss it as a bonus action, or if you cast it again. You can also hurl the flame as a ranged spell attack. On a hit, the target takes 1d8 fire damage.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">👻</div></td>
+                            <td class="font-medium text-gray-900">Unseen Servant</td>
+                            <td>1 action</td>
+                            <td>60 ft</td>
+                            <td>1 hour</td>
+                            <td>This spell creates an invisible, mindless, shapeless force that performs simple tasks at your command until the spell ends. The servant can perform tasks like fetching things, cleaning, opening doors, and holding a lantern. It has an AC of 10 and 1 hit point. It can't attack, activate magic items, or carry more than 20 pounds.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🎯</div></td>
+                            <td class="font-medium text-gray-900">Magic Missile</td>
+                            <td>1 action</td>
+                            <td>120 ft</td>
+                            <td>Instantaneous</td>
+                            <td>You create three glowing darts of force. Each dart hits a creature or object of your choice that you can see within range. The darts all strike simultaneously, and you can direct them at one creature or several. A dart deals 1d4 + 1 force damage to its target. The darts all strike at once, and no attack roll is needed.</td>
+                        </tr>
+                        <tr>
+                            <td><div class="icon-lg">🛡️</div></td>
+                            <td class="font-medium text-gray-900">Armor of Agathys</td>
+                            <td>1 action</td>
+                            <td>Self</td>
+                            <td>1 hour</td>
+                            <td>A protective force of ice surrounds you, granting you 5 temporary hit points and, for the duration, if a creature hits you with a melee attack while you have these temporary hit points, the creature takes 5 cold damage. The temporary hit points and cold damage scale with the spell slot level.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Spell Generator Section -->
+        <div class="card p-6">
+            <h2 class="text-3xl font-semibold text-gray-700 mb-6">✨ Spell Generator ✨</h2>
+            <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <input id="spell-prompt" type="text" placeholder="e.g., A spell that lets me breathe underwater" class="flex-grow w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button id="generate-spell-btn" class="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                    Generate Spell ✨
+                </button>
+            </div>
+            <div id="loading-indicator" class="mt-4 text-center text-gray-500 italic">
+                Generating spell...
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        // Helper function to create HTML for a spell row
+        function createSpellRow(icon, name, time, range, duration, description) {
+            return `
+                <tr>
+                    <td><div class="icon-lg">${icon}</div></td>
+                    <td class="font-medium text-gray-900">${name}</td>
+                    <td>${time}</td>
+                    <td>${range}</td>
+                    <td>${duration}</td>
+                    <td>${description}</td>
+                </tr>
+            `;
+        }
+
+        const generateSpellBtn = document.getElementById('generate-spell-btn');
+        const spellPromptInput = document.getElementById('spell-prompt');
+        const spellTableBody = document.getElementById('spell-table-body');
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+        generateSpellBtn.addEventListener('click', async () => {
+            const prompt = spellPromptInput.value;
+            if (!prompt) {
+                // A custom message box is used instead of alert()
+                const messageBox = document.createElement('div');
+                messageBox.innerHTML = `
+                    <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+                        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm mx-auto">
+                            <h3 class="text-xl font-bold mb-4">Input Required</h3>
+                            <p>Please enter a spell idea!</p>
+                            <div class="mt-4 text-right">
+                                <button onclick="this.closest('.fixed').remove()" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(messageBox);
+                return;
+            }
+
+            loadingIndicator.style.display = 'block';
+            generateSpellBtn.disabled = true;
+
+            const apiKey = ""; // Leave as is, Canvas will inject the key at runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            const systemPrompt = `
+                You are a D&D game master. Your task is to generate a new, creative spell based on a user's prompt.
+                The spell must follow the format of a standard D&D 5th edition spell.
+                Provide the response as a single JSON object. Do not include any text before or after the JSON.
+                The JSON object must have the following keys:
+                "icon": a single emoji icon representing the spell (e.g., "🔥", "💧", "🌿", "🛡️").
+                "name": The name of the spell.
+                "castingTime": The casting time (e.g., "1 action", "1 minute", "1 hour").
+                "range": The spell's range (e.g., "Self", "30 ft", "Touch").
+                "duration": The spell's duration (e.g., "Instantaneous", "1 hour", "Concentration, up to 1 minute").
+                "description": A detailed description of the spell, as a single paragraph.
+            `;
+            
+            const userQuery = `Generate a spell based on the following theme: "${prompt}".`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+                generationConfig: {
+                    responseMimeType: "application/json"
+                }
+            };
+            
+            try {
+                let response = null;
+                let data = null;
+                let retries = 0;
+                const maxRetries = 3;
+                while (retries < maxRetries) {
+                    try {
+                        response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        data = await response.json();
+                        if (response.ok) {
+                            break;
+                        }
+                    } catch (e) {
+                        console.error('Fetch failed, retrying...', e);
+                        retries++;
+                        await new Promise(res => setTimeout(res, 1000 * Math.pow(2, retries)));
+                    }
+                }
+
+                if (!data || !data.candidates || data.candidates.length === 0) {
+                    console.error('API response was empty or malformed.');
+                    loadingIndicator.innerText = 'Could not generate spell. Please try again.';
+                    return;
+                }
+
+                const jsonString = data.candidates[0].content.parts[0].text;
+                const newSpell = JSON.parse(jsonString);
+
+                // Add the new spell to the table
+                const newRowHtml = createSpellRow(
+                    newSpell.icon,
+                    newSpell.name,
+                    newSpell.castingTime,
+                    newSpell.range,
+                    newSpell.duration,
+                    newSpell.description
+                );
+                spellTableBody.insertAdjacentHTML('beforeend', newRowHtml);
+
+            } catch (error) {
+                console.error('Failed to generate spell:', error);
+                loadingIndicator.innerText = 'Error generating spell. Please try again.';
+            } finally {
+                loadingIndicator.style.display = 'none';
+                generateSpellBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
